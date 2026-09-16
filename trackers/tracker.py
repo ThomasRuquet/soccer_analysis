@@ -185,7 +185,7 @@ class Tracker:
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
         return frame
 
-    def draw_annotations(self, video_frames, tracks, team_ball_control):
+    def draw_annotations(self, video_frames, tracks):
         output_video_frames = []
         for frame_num, frame in enumerate(video_frames):
             frame = frame.copy()
@@ -210,9 +210,6 @@ class Tracker:
             # Draw ball 
             for track_id, ball in ball_dict.items():
                 frame = self.draw_triangle(frame, ball["bbox"],(0,255,0))
-
-            if team_ball_control is not None:
-                frame = self.draw_team_ball_control(frame, frame_num, team_ball_control)
 
             output_video_frames.append(frame)
 
